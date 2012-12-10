@@ -39,11 +39,13 @@ class S3Signature extends Helper
     /**
      * Constructs the policy view helper
      *
-     * @param array $config
+     * @param array  $config
+     * @param string $secret
      */
-    public function __construct($config = array())
+    public function __construct($config = array(), $secret = '')
     {
         $this->setConfig($config);
+        $this->setSecret($secret);
 
         // hash_hmac — Generate a keyed hash value using the HMAC method
         // (PHP 5 >= 5.1.2, PECL hash >= 1.1)
@@ -66,6 +68,9 @@ class S3Signature extends Helper
 
     /**
      * Outputs the signature for a policy configuration
+     *
+     * @param array  $config
+     * @param string $secret
      *
      * @return string
      */

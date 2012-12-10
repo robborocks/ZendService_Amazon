@@ -32,7 +32,7 @@ class S3Policy extends Helper
     /**
      * Constructs the policy view helper
      *
-     * @param array
+     * @param array $config
      */
     public function __construct($config = array())
     {
