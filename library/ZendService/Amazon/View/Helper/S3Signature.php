@@ -53,8 +53,10 @@ class S3Signature extends Helper
             // based on: http://www.php.net/manual/en/function.sha1.php#39492
             function hash_hmac($algo, $data, $key, $raw_output = false) {
                 $blocksize = 64;
-                if (strlen($key) > $blocksize)
+
+                if ( strlen($key) > $blocksize ) {
                     $key = pack('H*', $algo($key));
+                }
 
                 $key = str_pad($key, $blocksize, chr(0x00));
                 $ipad = str_repeat(chr(0x36), $blocksize);
