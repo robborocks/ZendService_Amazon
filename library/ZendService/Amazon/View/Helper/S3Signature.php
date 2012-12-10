@@ -51,7 +51,7 @@ class S3Signature extends Helper
         // (PHP 5 >= 5.1.2, PECL hash >= 1.1)
         if ( !function_exists('hash_hmac' ) ) {
             // based on: http://www.php.net/manual/en/function.sha1.php#39492
-            function hash_hmac($algo, $data, $key, $raw_output = false) {
+            function hash_hmac($algo, $data, $key, $rawOutput = false) {
                 $blocksize = 64;
 
                 if ( strlen($key) > $blocksize ) {
@@ -63,7 +63,7 @@ class S3Signature extends Helper
                 $opad = str_repeat(chr(0x5c), $blocksize);
                 $hmac = pack('H*', $algo(($key^$opad) . pack('H*', $algo(($key^$ipad) . $data))));
 
-                return $raw_output ? $hmac : bin2hex($hmac);
+                return $rawOutput ? $hmac : bin2hex($hmac);
             }
         }
     }
